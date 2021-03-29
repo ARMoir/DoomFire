@@ -15,9 +15,9 @@ namespace DoomFire
         public static int CJS_TICKER_FPS { get; set; } = 27;
         public static int FIRE_WIDTH { get; set; } = 256;
         public static int FIRE_HEIGHT { get; set; } = 128;
-        public static Color[] firePal { get; set; } = new Color[37];
-        public static int[] firePixels { get; set; } = new int[FIRE_WIDTH * FIRE_HEIGHT];
-        public static int[] fireRGB { get; set; } = {
+        public static Color[] FIRE_PAL { get; set; } = new Color[37];
+        public static int[] FIRE_PIXELS { get; set; } = new int[FIRE_WIDTH * FIRE_HEIGHT];
+        public static int[] FIRE_RGB { get; set; } = {
                 0x07, 0x07, 0x07, 0x1F, 0x07, 0x07, 0x2F, 0x0F, 0x07, 0x47, 0x0F, 0x07, 0x57, 0x17, 0x07, 0x67,
                 0x1F, 0x07, 0x77, 0x1F, 0x07, 0x8F, 0x27, 0x07, 0x9F, 0x2F, 0x07, 0xAF, 0x3F, 0x07, 0xBF, 0x47,
                 0x07, 0xC7, 0x47, 0x07, 0xDF, 0x4F, 0x07, 0xDF, 0x57, 0x07, 0xDF, 0x57, 0x07, 0xD7, 0x5F, 0x07,
@@ -25,7 +25,6 @@ namespace DoomFire
                 0x87, 0x17, 0xC7, 0x87, 0x17, 0xC7, 0x8F, 0x17, 0xC7, 0x97, 0x1F, 0xBF, 0x9F, 0x1F, 0xBF, 0x9F,
                 0x1F, 0xBF, 0xA7, 0x27, 0xBF, 0xA7, 0x27, 0xBF, 0xAF, 0x2F, 0xB7, 0xAF, 0x2F, 0xB7, 0xB7, 0x2F,
                 0xB7, 0xB7, 0x37, 0xCF, 0xCF, 0x6F, 0xDF, 0xDF, 0x9F, 0xEF, 0xEF, 0xC7, 0xFF, 0xFF, 0xFF };
-
 
         public DoomFire()
         {
@@ -35,23 +34,23 @@ namespace DoomFire
 
             for (var i = 0; i < 37; i++)
             {
-                firePal[i] = Color.FromArgb((fireRGB[i * 3 + 0]), (fireRGB[i * 3 + 1]), (fireRGB[i * 3 + 2]));
+                FIRE_PAL[i] = Color.FromArgb((FIRE_RGB[i * 3 + 0]), (FIRE_RGB[i * 3 + 1]), (FIRE_RGB[i * 3 + 2]));
             }
 
             for (var i = 0; i < FIRE_WIDTH * FIRE_HEIGHT; i++)
             {
-                firePixels[i] = 0;
+                FIRE_PIXELS[i] = 0;
             }
 
             for (var i = 0; i < FIRE_WIDTH; i++)
             {
-                firePixels[(FIRE_HEIGHT - 1) * FIRE_WIDTH + i] = 36;
+                FIRE_PIXELS[(FIRE_HEIGHT - 1) * FIRE_WIDTH + i] = 36;
             }
         }
 
         public int DrawPixel(int x, int y, int pixel)
         {
-            BITMAP.SetPixel(x, y, firePal[pixel]);
+            BITMAP.SetPixel(x, y, FIRE_PAL[pixel]);
             return pixel;
         }
 
@@ -64,11 +63,11 @@ namespace DoomFire
                 int tmpSrc;
                 rand = ((rand + 2) & 255);
                 tmpSrc = (curSrc + (((counter - (randIdx & 3)) + 1) & (width - 1)));
-                firePixels[tmpSrc - FIRE_WIDTH] = pixel - (randIdx & 1);
+                FIRE_PIXELS[tmpSrc - FIRE_WIDTH] = pixel - (randIdx & 1);
             }
             else
             {
-                firePixels[srcOffset - FIRE_WIDTH] = 0;
+                FIRE_PIXELS[srcOffset - FIRE_WIDTH] = 0;
             }
 
             return rand;
@@ -84,7 +83,7 @@ namespace DoomFire
             do
             {
                 int srcOffset = (curSrc + counter);
-                int pixel = firePixels[srcOffset];
+                int pixel = FIRE_PIXELS[srcOffset];
                 int step = 2;
                 rand = SpreadFire(pixel, curSrc, counter, srcOffset, rand, FIRE_WIDTH);
                 curSrc += FIRE_WIDTH;
@@ -92,10 +91,10 @@ namespace DoomFire
 
                 do
                 {
-                    pixel = firePixels[srcOffset];
+                    pixel = FIRE_PIXELS[srcOffset];
                     step += 2;
                     rand = SpreadFire(pixel, curSrc, counter, srcOffset, rand, FIRE_WIDTH);
-                    pixel = firePixels[srcOffset + FIRE_WIDTH];
+                    pixel = FIRE_PIXELS[srcOffset + FIRE_WIDTH];
                     curSrc += FIRE_WIDTH;
                     srcOffset += FIRE_WIDTH;
                     rand = SpreadFire(pixel, curSrc, counter, srcOffset, rand, FIRE_WIDTH);
@@ -118,7 +117,7 @@ namespace DoomFire
             {
                 for (var w = 0; w < FIRE_WIDTH; w++)
                 {
-                    var p = firePixels[h * FIRE_WIDTH + w];
+                    var p = FIRE_PIXELS[h * FIRE_WIDTH + w];
                     DrawPixel(w, h, p);
                 }
             }
