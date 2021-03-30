@@ -10,8 +10,8 @@ namespace DoomFire
 {
     public partial class DoomFire : Form
     {
-        public static Random RANDOM { get; set; } = new Random();
         public static Bitmap BITMAP { get; set; }
+        public static Random RANDOM { get; set; } = new Random();
         public static int CJS_TICKER_FPS { get; set; } = 27;
         public static int FIRE_WIDTH { get; set; } = 256;
         public static int FIRE_HEIGHT { get; set; } = 128;
@@ -29,7 +29,8 @@ namespace DoomFire
         public DoomFire()
         {
             InitializeComponent();
-            Ticker.Interval = CJS_TICKER_FPS;
+
+            TICKER.Interval = CJS_TICKER_FPS;
             BITMAP = new Bitmap(Convert.ToInt32(FIRE_WIDTH), Convert.ToInt32(FIRE_HEIGHT), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             for (var i = 0; i < 37; i++)

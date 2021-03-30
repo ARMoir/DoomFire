@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.STAGE = new System.Windows.Forms.PictureBox();
-            this.Ticker = new System.Windows.Forms.Timer(this.components);
+            this.TICKER = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.STAGE)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,11 +46,11 @@
             this.STAGE.TabIndex = 0;
             this.STAGE.TabStop = false;
             // 
-            // Ticker
+            // TICKER
             // 
-            this.Ticker.Enabled = true;
-            this.Ticker.Interval = 27;
-            this.Ticker.Tick += new System.EventHandler(this.Ticker_Tick);
+            this.TICKER.Enabled = true;
+            this.TICKER.Interval = 27;
+            this.TICKER.Tick += new System.EventHandler(this.Ticker_Tick);
             // 
             // DoomFire
             // 
@@ -69,7 +69,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox STAGE;
-        private System.Windows.Forms.Timer Ticker;
+        private System.Windows.Forms.Timer TICKER;
     }
 }
 
