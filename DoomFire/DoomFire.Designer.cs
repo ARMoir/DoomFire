@@ -29,45 +29,47 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Stage = new System.Windows.Forms.PictureBox();
-            this.Ticker = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.Stage)).BeginInit();
+            this.STAGE = new System.Windows.Forms.PictureBox();
+            this.TICKER = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.STAGE)).BeginInit();
             this.SuspendLayout();
             // 
-            // Stage
+            // STAGE
             // 
-            this.Stage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.STAGE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Stage.Location = new System.Drawing.Point(12, 12);
-            this.Stage.Name = "Stage";
-            this.Stage.Size = new System.Drawing.Size(504, 552);
-            this.Stage.TabIndex = 0;
-            this.Stage.TabStop = false;
+            this.STAGE.Location = new System.Drawing.Point(16, 15);
+            this.STAGE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.STAGE.Name = "STAGE";
+            this.STAGE.Size = new System.Drawing.Size(672, 679);
+            this.STAGE.TabIndex = 0;
+            this.STAGE.TabStop = false;
             // 
-            // Ticker
+            // TICKER
             // 
-            this.Ticker.Enabled = true;
-            this.Ticker.Interval = 27;
-            this.Ticker.Tick += new System.EventHandler(this.Ticker_Tick);
+            this.TICKER.Enabled = true;
+            this.TICKER.Interval = 27;
+            this.TICKER.Tick += new System.EventHandler(this.Ticker_Tick);
             // 
             // DoomFire
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 576);
-            this.Controls.Add(this.Stage);
+            this.ClientSize = new System.Drawing.Size(704, 709);
+            this.Controls.Add(this.STAGE);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DoomFire";
             this.Text = "DoomFire";
-            ((System.ComponentModel.ISupportInitialize)(this.Stage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.STAGE)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox Stage;
-        private System.Windows.Forms.Timer Ticker;
+        private System.Windows.Forms.PictureBox STAGE;
+        private System.Windows.Forms.Timer TICKER;
     }
 }
 
