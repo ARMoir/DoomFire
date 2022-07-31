@@ -62,8 +62,8 @@ namespace DoomFire
             {
                 int randIdx = RANDOM.Next(0, 255);
                 int tmpSrc;
-                rand = ((rand + 2) & 255);
-                tmpSrc = (curSrc + (((counter - (randIdx & 3)) + 1) & (width - 1)));
+                rand = (rand + 2) & 255;
+                tmpSrc = curSrc + (((counter - (randIdx & 3)) + 1) & (width - 1));
                 FIRE_PIXELS[tmpSrc - FIRE_WIDTH] = pixel - (randIdx & 1);
             }
             else
@@ -81,7 +81,7 @@ namespace DoomFire
             int rand = RANDOM.Next(0, 255);
             int curSrc = FIRE_WIDTH;
 
-            do
+            while (counter < FIRE_WIDTH)
             {
                 int srcOffset = (curSrc + counter);
                 int pixel = FIRE_PIXELS[srcOffset];
@@ -90,7 +90,7 @@ namespace DoomFire
                 curSrc += FIRE_WIDTH;
                 srcOffset += FIRE_WIDTH;
 
-                do
+                while (step < FIRE_HEIGHT) 
                 {
                     pixel = FIRE_PIXELS[srcOffset];
                     step += 2;
@@ -102,12 +102,12 @@ namespace DoomFire
                     curSrc += FIRE_WIDTH;
                     srcOffset += FIRE_WIDTH;
 
-                } while (step < FIRE_HEIGHT);
+                } 
 
                 counter++;
                 curSrc -= ((FIRE_WIDTH * FIRE_HEIGHT) - FIRE_WIDTH);
 
-            } while (counter < FIRE_WIDTH);
+            } 
         }
 
         private void Ticker_Tick(object sender, EventArgs e)
