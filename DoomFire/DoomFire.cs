@@ -86,9 +86,9 @@ namespace DoomFire
 
                 int tmpSrc;
 
-                rand = (rand + 2) & 255;
+                rand = ((rand + 2) & 255);
 
-                tmpSrc = curSrc + (((counter - (randIdx & 3)) + 1) & (width - 1));
+                tmpSrc = (curSrc + (((counter - (randIdx & 3)) + 1) & (width - 1)));
 
                 Globals.firePixels[tmpSrc - Globals.FIRE_WIDTH] = pixel - (randIdx & 1);
 
@@ -112,8 +112,7 @@ namespace DoomFire
 
             int curSrc = Globals.FIRE_WIDTH;
 
-            while (counter < Globals.FIRE_WIDTH) 
-
+            do
             {
 
                 int srcOffset = (curSrc + counter);
@@ -128,8 +127,7 @@ namespace DoomFire
 
                 srcOffset += Globals.FIRE_WIDTH;
 
-                while (step < Globals.FIRE_HEIGHT) 
-
+                do
                 {
 
                     pixel = Globals.firePixels[srcOffset];
@@ -150,13 +148,13 @@ namespace DoomFire
 
                     srcOffset += Globals.FIRE_WIDTH;
 
-                } 
+                } while (step < Globals.FIRE_HEIGHT);
 
                 counter++;
 
                 curSrc -= ((Globals.FIRE_WIDTH * Globals.FIRE_HEIGHT) - Globals.FIRE_WIDTH);
 
-            } 
+            } while (counter < Globals.FIRE_WIDTH);
         }
 
         private void Ticker_Tick(object sender, EventArgs e)
